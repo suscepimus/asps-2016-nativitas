@@ -1,0 +1,314 @@
+% !TEX TS-program = LuaLaTex+se
+
+%%%%%%% préambule, type de document
+\documentclass[%
+				12 pt,% corps courant
+				nofoot,% pas de pied de page
+				%draft,% pour signaler les overfull boxes
+				twoside% recto-verso
+				]{book}% livre!
+
+%%%%%%% taille de l'ouvrage
+%\usepackage[%
+%			a5paper,%
+	%		left=1.2cm,%
+	%		right=3cm,%
+	%		top=1.8cm,%
+	%		bottom=1.8cm%
+	%		]{geometry}
+
+%%%%%%% taille de l'ouvrage
+\usepackage[%
+			paperwidth = 135 mm,% largeur de page
+			paperheight = 205 mm,% hauteur de page
+%			includehead,% inclure dans ces dimensions l'en-tête de page
+%			headheight = 5 mm,% hauteur de l'en-tête
+%			headsep = 4 mm,% séparation entre en-tête et page
+			left = 9 mm,% marge interne
+			right = 21 mm,% marge externe
+			top = 15 mm,% marge haute
+			bottom = 20 mm,% marge bas
+			%margin=20 mm% marges, option toutes égales
+			]{geometry}% pour les formats
+
+\usepackage{fontspec} %%
+\usepackage[latin]{babel} %%
+\usepackage{gregoriotex} %%
+\usepackage{graphicx} % pour inclure des images
+%\pagestyle{empty} %%
+\setmainfont[
+   % BoldFont=Capella-Bold,
+ %   ItalicFont=Capella-Italic,
+ %   BoldItalicFont=Capella-Italic,
+   SmallCapsFont=Capella-SmallCaps,
+   SmallCapsFeatures={Letters=SmallCaps},
+]{Capella} % pour tout ceci voir fontspec pdf
+\usepackage{xcolor}
+
+\pagestyle{empty}
+
+%\definecolor{gregoriocolor}{RGB}{229,53,44}% valeurs prédéfinies
+%\definecolor{gregoriocolor}{cmyk}{0,1,0,0}% pour avoir du rouge clair à l'impression
+\definecolor{gregoriocolor}{cmyk}{0,0,0,1}% pour avoir du noir uniquement
+
+%%%%%%% mise en forme avancée
+\usepackage[expansion=true]{microtype}% pour la microtypographie, encore à explorer!
+\usepackage{lettrine}% id est quod dicitur
+\usepackage{setspace}% pour les interlignes etc
+%\usepackage[% pour éviter les veuves et orphelines
+%			defaultlines=2,% option spécifier le nombre mini de lignes à conserver 
+%			all]% appliquer à tout le document
+%			{nowidow}% package
+
+
+\def\GreStar{\textcolor{gregoriocolor}{*}}
+\def\GreDagger{\textcolor{gregoriocolor}{†}}
+\def\Rbar{\textcolor{gregoriocolor}{℟}}
+\def\Vbar{\textcolor{gregoriocolor}{℣}}
+\def\Abar{\textcolor{gregoriocolor}{Ⱥ}}
+\gresetspecial{'oe}{ø}
+\def\oea{ø} % oe accentué
+
+
+\newcommand{\noct}[1]{\begin{center}{\footnotesize{#1}}\end{center}\vspace{-1ex}}
+
+\newcommand{\repons}[1]{\vspace{1ex}\begin{center}{\small{\textbf{#1}}}\end{center}\vspace{-1ex}}
+
+\begin{document}
+
+% \input{mechtildis.tex}
+
+\grechangedim{minimalinitialwidth}{1cm}{scalable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% réglages mechtildis
+
+%\grechangedim{ascendingpunctuminclinatumshift}{-0.0432021 cm plus 0.02009 cm minus 0.0009 cm}{scalable}
+%\grechangedim{ascendingpunctuminclinatumbigshift}{-0.0432021 cm plus 0.02009 cm minus 0.0009 cm}{scalable}
+\grechangedim{punctuminclinatumshift}{-0.021 cm plus 0.0009 cm minus 0.0009 cm}{scalable}
+\grechangedim{spacebeforesigns}{0.039 cm plus 0.005 cm minus 0.001 cm}{scalable}
+\grechangedim{ascendingpunctuminclinatumdescendingshift}{0.41 cm plus 0.0009 cm minus 0.0009 cm}{scalable}
+\grechangedim{descendingpunctuminclinatumascendingshift}{-0.031 cm plus 0.0009 cm minus 0.0009 cm}{scalable}
+%\grechangedim{beforepunctainclinatashift}{0.039 cm plus 0.005 cm minus 0.001 cm}{scalable}
+\grechangedim{punctuminclinatumunisonshift}{0.03575 cm plus 0 cm minus 0.001822 cm}{scalable}
+
+\gresetbarspacing{new}
+% the additional width of the additional lines (compared to the width of the glyph they're associated with)
+\grechangedim{additionallineswidth}{0.17584 cm}{scalable}%
+% width of the additional lines, used only for the custos (maybe should depend on the width of the custos...)
+% the width is the one for the custos at end of lines, the line for custos in the middle of a score is the same
+% multiplied by 2.
+\grechangedim{additionalcustoslineswidth}{0.09114 cm}{scalable}%
+
+% space between glyphs in the same element
+\grechangedim{interglyphspace}{0.0715 cm}{scalable}%
+% space between elements which has the size of a note
+\grechangedim{glyphspace}{0.143 cm plus 0 cm minus 0.01822 cm}{scalable}%
+% minimal space between notes of different words
+\grechangedim{interwordspacenotes}{0.3775 cm plus 0.005 cm minus 0.005 cm}{scalable}%
+% minimal space between notes of the same syllable.
+\grechangedim{intersyllablespacenotes}{0.2145 cm}{scalable}%
+% minimal space between letters of different words. Makes sense to have
+% the same plus and minus as interwordspacenotes.
+\grechangedim{interwordspacetext}{0.17875 cm plus 0.286 cm minus 0.0143 cm}{scalable}%
+% space between notes of a bivirga or trivirga
+\grechangedim{bitrivirspace}{0.0715 cm}{scalable}%
+% space between notes of a bistropha or tristrophae
+\grechangedim{bitristrospace}{0.0143 cm}{scalable}%
+% space between an alteration (flat or natural) and the next glyph
+\grechangedim{alterationspace}{0.0715 cm}{scalable}%
+% space between a clef and a flat (for clefs with flat)
+\grechangedim{clefflatspace}{0.0715 cm}{scalable}%
+% when bolshifts are enabled, minimal space between a clef at the beginning of the line and a leading alteration glyph (should be larger than clefflatspace so that a flatted clef can be distinguished from a flat which is part of the first glyph on a line, but also smaller than spaceafterlineclef, the distance from the clef to the first notes)
+\grechangedim{beforealterationspace}{0.143 cm}{scalable}%
+% half-space between elements
+\grechangedim{halfspace}{0.0715 cm plus 0.00091 cm minus 0.00182 cm}{scalable}%
+% space between elements
+%\grechangedim{interelementspace}{0.143 cm cm plus 0.00182 cm minus 0.00363 cm}{scalable}%
+% larger space between elements
+\grechangedim{largerspace}{0.286 cm plus 0.01822 cm minus 0.00911 cm}{scalable}%
+% space before end-of-line custos
+\grechangedim{spacebeforeeolcustos}{0.2145 cm}{scalable}%
+% space after a clef at the beginning of a line
+\grechangedim{spaceafterlineclef}{0.286 cm}{scalable}%
+
+% bars having their own syllable, with text associated (new bar spacing algorithm only)
+% plus or minus here will trigger some problems
+\grechangedim{bar@virgula@standalone@text}{0.2145 cm}{scalable}%
+\grechangedim{bar@minima@standalone@text}{0.2145 cm}{scalable}%
+\grechangedim{bar@minor@standalone@text}{0.2145 cm}{scalable}%
+\grechangedim{bar@dominican@standalone@text}{0.2145 cm}{scalable}%
+\grechangedim{bar@maior@standalone@text}{0.2145 cm}{scalable}%
+\grechangedim{bar@finalis@standalone@text}{0.2145 cm}{scalable}%
+% actual space before divisio finalis, not additional one
+\grechangedim{bar@finalfinalis@standalone@text}{0.286 cm}{scalable}%
+% bars having their own syllable, with no text associated (new bar spacing algorithm only)
+\grechangedim{bar@virgula@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@minima@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@minor@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@dominican@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@maior@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@finalis@standalone@notext}{0.2145 cm}{scalable}%
+\grechangedim{bar@finalfinalis@standalone@notext}{0.286 cm}{scalable}%
+% bars inside syllables
+\grechangedim{bar@virgula}{0.143 cm plus 0.2145 cm minus 0.0143 cm}{scalable}%
+\grechangedim{bar@minima}{0.143 cm plus 0.2145 cm minus 0.0143 cm}{scalable}%
+\grechangedim{bar@minor}{0.143 cm plus 0.2145 cm minus 0.0143 cm}{scalable}%
+% minimal space between letters of different syllable texts for text around bars
+% (new bar spacing algorithm only)
+\grechangedim{interwordspacetext@bars}{0.143 cm}{scalable}%
+% minimal space between letters of different syllable texts for text around bars,
+% euouae context
+\grechangedim{interwordspacetext@bars@euouae}{0.143 cm}{scalable}%
+\grechangedim{interwordspacetext@bars@notext}{0.143 cm}{scalable}%
+% minimal space between letters of different syllable texts for text around bars,
+% euouae context
+\grechangedim{interwordspacetext@bars@notext@euouae}{0.2145 cm}{scalable}%
+% rubber length that will be added around bars in new bar spacing algorithm
+\grechangedim{bar@rubber}{0 cm plus 0.2145 cm minus 0.0143 cm}{scalable}%
+% additional space that will appear around bars that are preceded by a custos and followed by a key.
+\grechangedim{spacearoundclefbars}{0.03645 cm plus 0.00455 cm minus 0.0009 cm}{scalable}%
+% Maximum offset between a bar and its associated text when the text goes left of the bar (new bar spacing algorithm only)
+\grechangedim{maxbaroffsettextleft}{0.286 cm}{scalable}%
+% Same as maxbaroffsettextleft when text goes right of the bar
+\grechangedim{maxbaroffsettextright}{0.286 cm}{scalable}%
+% Maximum offset between a no-bar (i.e. something like `text()` in gabc) and its associated text when the text goes left of the no-bar (new bar spacing algorithm only)
+\grechangedim{maxbaroffsettextleft@nobar}{0.143 cm}{scalable}%
+% Same as maxbaroffsettextleft@nobar when text goes right of the no-bar
+\grechangedim{maxbaroffsettextright@nobar}{0.143 cm}{scalable}%
+% Space between the two bars of a divisio finalis
+% Maximum offset between a bar and its associated text when the text goes left of the bar and the bar terminates a line (i.e. something line `text(::z)` in gabc) (new bar spacing algorithm only)
+\grechangedim{maxbaroffsettextleft@eol}{0.0715 cm}{scalable}%
+% Same as maxbaroffsettextleft@eol when text goes right of the bar
+\grechangedim{maxbaroffsettextright@eol}{0.0715 cm}{scalable}%
+\grechangedim{divisiofinalissep}{0.1094 cm}{scalable}%
+% maximal space between two syllables for which we consider a dash is not needed
+\grechangedim{maximumspacewithoutdash}{0.2 mm}{scalable}%
+% an extensible space for the beginning of lines
+\grechangedim{afterclefnospace}{0 cm plus 0 cm minus 0 cm}{scalable}%
+% space between the initial and the beginning of the score
+\grechangedim{afterinitialshift}{1.43 mm}{scalable}%
+% space before the initial
+\grechangedim{beforeinitialshift}{1.43 mm}{scalable}%
+% when bolshifts are enabled, minimum space between beginning of line and first syllable text
+\grechangedim{minimalspaceatlinebeginning}{0 cm}{scalable}%
+% space to force the initial width to.  Ignored when 0.
+\grechangedim{manualinitialwidth}{0 cm}{scalable}%
+% distance to move the initial up by
+\grechangedim{initialraise}{0 cm}{scalable}%
+% Space between lines in the annotation
+\grechangedim{annotationseparation}{0.25 mm}{scalable}%
+% Space between lines in the commentary
+\grechangedim{commentaryseparation}{3.8 mm}{scalable}%
+% Amount to raise (positive) or lower (negative) the commentary from the default position (base line of bottom commentary aligned with top line of staff)
+\grechangedim{commentaryraise}{1.6 ex}{scalable}%
+% space at the beginning of the lines if there is no clef
+\grechangedim{noclefspace}{0.1 cm}{scalable}%
+% space around a clef change
+\grechangedim{clefchangespace}{0.01768 cm plus 0.00175 cm minus 0.01768 cm}{scalable}%
+% When \gre@clivisalignment is 2, this distance is the maximum length of the consonants after vowels for which the clivis will be aligned on its center.
+\grechangedim{clivisalignmentmin}{0.3 cm}{scalable}%
+
+%the space above the lines
+\grechangedim{spaceabovelines}{0.44576 cm plus 0.36461 cm minus 0.09114 cm}{scalable}%
+%the space beneath the text
+\grechangedim{spacebeneathtext}{0 cm}{scalable}%
+% height that is added at the top of the lines if there is text above the lines (it must be bigger than the text for it to be taken into consideration)
+\grechangedim{abovelinestextheight}{0.3 cm}{scalable}%
+% shift for a punctum mora for a note on a line
+\grechangedim{linepunctummorashift}{-0.06314 cm}{scalable}%
+% shift for a punctum mora for a note in a space
+\grechangedim{spacepunctummorashift}{-0.02013 cm}{scalable}%
+% shift for a punctum mora for the second note (in a space) of a pes with ambitus one
+\grechangedim{spaceamonepespunctummorashift}{0.00183 cm}{scalable}%
+% shift for a punctum mora for the second note in a porrectus, on a line
+\grechangedim{lineporrectuspunctummorashift}{0.04575 cm}{scalable}%
+% shift for a punctum mora for the second note in a porrectus, in a space
+\grechangedim{spaceporrectuspunctummorashift}{0.00000 cm}{scalable}%
+% shift for a rare sign
+\grechangedim{raresignshift}{0.18302 cm}{scalable}%
+%
+
+\gresetbarspacing{new}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% annotation et commentary
+\gresetheadercapture{commentary}{grecommentary}{string}
+\grechangestyle{commentary}{\it\footnotesize\color{gregoriocolor}}
+\grechangedim{annotationraise}{-2.5 mm}{scalable}
+\grechangestyle{annotation}{\sc\small\color{gregoriocolor}}
+\grechangestyle{firstword}{\sc} % à voir si à garder
+%\grechangestyle{initial}{\fontsize{36}{36}\selectfont}
+%\greprintsigns{vepisema}{disable}
+\gresetlinesbehindalteration{visible}
+%\gresetclivisalignment{never} % à voir
+
+
+\begin{center}
+	\textbf{RESPONSORIA\\
+	IN NOCTE NATIVITATIS DOMINI}
+\end{center}
+
+\noct{IN PRIMO NOCTURNO}
+
+	\repons{Responsorium I}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize V}{}
+%		\commentary{{\footnotesize \emph{Cf. Lc 2, 14}}}
+		\gregorioscore[a]{gabc/RP-HodieNobis}
+
+\vfill
+	\repons{Responsorium II}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize VIII}{}
+%		\commentary{{\footnotesize \emph{}}}
+		\gregorioscore[a]{gabc/RP-HodieNobisDe}
+
+\newpage
+	\repons{Responsorium III}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize IV}{}
+%		\commentary{{\footnotesize \emph{}}}
+		\gregorioscore[a]{gabc/RP-QuemVidistis}
+
+%\vspace{1em}	
+	\repons{Responsorium IV}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize I}{}
+%		\commentary{{\footnotesize \emph{Cf. Ps 18, 6}}}
+		\gregorioscore[a]{gabc/RP-DescenditDe}
+
+\newpage
+\noct{IN TERTIO NOCTURNO}
+
+	\repons{Responsorium IX}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize I}{}
+%		\commentary{{\footnotesize \emph{}}}
+		\gregorioscore[a]{gabc/RP-ORegem}
+
+%\newpage
+	\repons{Responsorium X}
+	
+%		\gresetfirstlineaboveinitial{\scriptsize VII}{}
+%		\commentary{{\footnotesize \emph{Io 1, 29-30.27; 3, 31}}}
+		\gregorioscore[a]{gabc/RP-EcceAgnus}
+
+\newpage
+	\repons{Responsorium XI}
+	
+%	\setspaceafterinitial{5mm}{1}
+%	\setspacebeforeinitial{5mm}{1}
+%		\gresetfirstlineaboveinitial{\scriptsize VII}{}
+%		\commentary{{\footnotesize \emph{Io 1, 1-2.3}}}
+		\gregorioscore[a]{gabc/RP-InPrincipio}
+
+%\newpage		
+	\repons{Responsorium XII}
+	
+%\GreLoadSpaceConf{myspaces}
+%		\gresetfirstlineaboveinitial{\scriptsize VIII}{}
+%		\commentary{{\footnotesize \emph{Io 1, 14; 1, 1}}}
+		\gregorioscore[a]{gabc/RP-VerbumCaro}
+
+\end{document}
